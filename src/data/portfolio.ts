@@ -97,6 +97,10 @@ export const portfolio: Portfolio = {
       'Un espacio personal para documentar experiencia, proyectos abiertos y las herramientas con las que convierto ideas en sistemas.',
     primaryAction: 'Explorar proyectos',
     secondaryAction: 'Conectar',
+    image: {
+      src: '/images/profile/gustavo-ismael-ponce-profile.webp',
+      alt: 'Gustavo Ismael Ponce',
+    },
     signals: [
       { label: 'BASE', value: 'Agregar ubicación' },
       { label: 'STATUS', value: 'Agregar disponibilidad', accent: true },
