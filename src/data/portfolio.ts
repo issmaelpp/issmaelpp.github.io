@@ -92,7 +92,7 @@ export const portfolio: Portfolio = {
   },
   hero: {
     eyebrow: 'SOFTWARE DEVELOPER / SYSTEMS IN PROGRESS',
-    headline: 'Construyo software que vuelve visible lo complejo.',
+    headline: 'Sistemas simples para problemas complejos.',
     lede:
       'Un espacio personal para documentar experiencia, proyectos abiertos y las herramientas con las que convierto ideas en sistemas.',
     primaryAction: 'Explorar proyectos',
@@ -102,9 +102,9 @@ export const portfolio: Portfolio = {
       alt: 'Gustavo Ismael Ponce',
     },
     signals: [
-      { label: 'BASE', value: 'Agregar ubicación' },
-      { label: 'STATUS', value: 'Agregar disponibilidad', accent: true },
-      { label: 'FOCUS', value: 'PHP · Python · JavaScript' },
+      { label: 'BASE', value: 'Paso de los Libres, Corrientes' },
+      { label: 'STATUS', value: 'Available', accent: true },
+      { label: 'FOCUS', value: 'PHP · Python · JavaScript, PostgreSQL' },
     ],
   },
   profile: {

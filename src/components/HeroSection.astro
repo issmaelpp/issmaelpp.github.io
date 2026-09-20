@@ -39,7 +39,10 @@ const { identity, hero } = Astro.props;
           <span>IDENTITY / 00</span>
           <span class="signal-panel__pulse" aria-hidden="true"></span>
         </div>
-        <p class="signal-panel__name">{identity.name}</p>
+        <div style="display: flex; align-items: center; gap: 0.5em;">
+          <p class="signal-panel__name" style="margin: 0;">{identity.name}</p>
+          <img src="https://flagcdn.com/ar.svg" alt="" width="20" height="14" class="flag" />
+        </div>
         <p class="signal-panel__role">{identity.role}</p>
         <dl class="signal-list">
           {hero.signals.map((signal) => (
