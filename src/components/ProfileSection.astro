@@ -1,0 +1,33 @@
+---
+import type { Portfolio } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  profile: Portfolio['profile'];
+}
+
+const { profile } = Astro.props;
+---
+
+<section id="perfil" class="section profile-section" aria-labelledby="profile-title">
+  <SectionHeading id="profile-title" eyebrow={profile.eyebrow} title={profile.title} />
+
+  <div class="profile-section__grid">
+    <div class="profile-section__body" data-reveal>
+      {profile.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      <p class="profile-section__statement">“{profile.statement}”</p>
+    </div>
+
+    <ol class="principles-list" aria-label="Principios de trabajo">
+      {profile.principles.map((principle) => (
+        <li class="principle" data-reveal>
+          <span class="principle__number">{principle.number}</span>
+          <div>
+            <h3>{principle.title}</h3>
+            <p>{principle.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

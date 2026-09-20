@@ -1,0 +1,46 @@
+---
+import type { Experience } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  experiences: Experience[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<section id="experiencia" class="section experience-section" aria-labelledby="experience-title">
+  <SectionHeading
+    id="experience-title"
+    eyebrow="02 / EXPERIENCE"
+    title="Contexto, decisiones y evolución."
+    description="Una línea de tiempo para registrar dónde se construyeron las cosas y qué se aprendió en el proceso."
+  />
+
+  {experiences.length > 0 ? (
+    <ol class="experience-list">
+      {experiences.map((experience, index) => (
+        <li class:list={['experience-item', { 'experience-item--placeholder': experience.placeholder }]} data-reveal>
+          <div class="experience-item__index">{String(index + 1).padStart(2, '0')}</div>
+          <div class="experience-item__period">{experience.period}</div>
+          <div class="experience-item__content">
+            <div class="experience-item__topline">
+              <p class="experience-item__role">{experience.role}</p>
+              <span class="experience-item__company">{experience.company}</span>
+            </div>
+            {experience.location && <p class="experience-item__location">{experience.location}</p>}
+            <p class="experience-item__description">{experience.description}</p>
+            <ul class="tag-list" aria-label={`Tecnologías de ${experience.role}`}>
+              {experience.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+            <ul class="experience-item__highlights">
+              {experience.highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  ) : (
+    <div class="empty-state" data-reveal>Agrega aquí tu primera experiencia.</div>
+  )}
+</section>

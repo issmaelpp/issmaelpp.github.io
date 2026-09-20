@@ -1,0 +1,61 @@
+---
+import type { Portfolio } from '../data/portfolio';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props {
+  identity: Portfolio['identity'];
+  hero: Portfolio['hero'];
+}
+
+const { identity, hero } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="shell hero__grid">
+    <div class="hero__copy" data-reveal>
+      <p class="eyebrow"><span class="eyebrow__line"></span>{hero.eyebrow}</p>
+      <h1 id="hero-title">{hero.headline}</h1>
+      <p class="hero__lede">{hero.lede}</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#proyectos">
+          {hero.primaryAction}<span class="button__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="button button--text" href="#contacto">
+          {hero.secondaryAction}<span class="button__arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__aside" data-reveal>
+      <MediaPlaceholder
+        src={hero.image?.src}
+        alt={hero.image?.alt}
+        label="PROFILE IMAGE"
+        variant="portrait"
+        loading="eager"
+      />
+      <div class="signal-panel">
+        <div class="signal-panel__head">
+          <span>IDENTITY / 00</span>
+          <span class="signal-panel__pulse" aria-hidden="true"></span>
+        </div>
+        <p class="signal-panel__name">{identity.name}</p>
+        <p class="signal-panel__role">{identity.role}</p>
+        <dl class="signal-list">
+          {hero.signals.map((signal) => (
+            <div class:list={['signal-list__item', { 'signal-list__item--accent': signal.accent }]}>
+              <dt>{signal.label}</dt>
+              <dd>{signal.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell hero__base-line" aria-hidden="true">
+    <span>SCROLL TO INSPECT</span>
+    <span class="hero__base-line-mark"></span>
+    <span>001 / 005</span>
+  </div>
+</section>

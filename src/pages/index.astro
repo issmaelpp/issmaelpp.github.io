@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactSection from '../components/ContactSection.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ProfileSection from '../components/ProfileSection.astro';
+import ProjectIndex from '../components/ProjectIndex.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import StackList from '../components/StackList.astro';
+import { portfolio } from '../data/portfolio';
+---
+
+<BaseLayout title={portfolio.seo.title} description={portfolio.seo.description}>
+  <SiteHeader
+    name={portfolio.identity.name}
+    monogram={portfolio.identity.monogram}
+    links={portfolio.links}
+  />
+
+  <main id="main-content">
+    <HeroSection identity={portfolio.identity} hero={portfolio.hero} />
+
+    <div class="shell page-content">
+      <ProfileSection profile={portfolio.profile} />
+      <ExperienceTimeline experiences={portfolio.experience} />
+      <ProjectIndex projects={portfolio.projects} />
+      <StackList stack={portfolio.stack} />
+      <ContactSection contact={portfolio.contact} />
+    </div>
+  </main>
+
+  <SiteFooter identity={portfolio.identity} />
+</BaseLayout>

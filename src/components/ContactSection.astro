@@ -1,0 +1,39 @@
+---
+import type { Portfolio } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  contact: Portfolio['contact'];
+}
+
+const { contact } = Astro.props;
+---
+
+<section id="contacto" class="section contact-section" aria-labelledby="contact-title">
+  <SectionHeading id="contact-title" eyebrow={contact.eyebrow} title={contact.title} />
+
+  <div class="contact-panel" data-reveal>
+    <div>
+      <p class="contact-panel__kicker">OPEN CHANNEL / 05</p>
+      <p class="contact-panel__text">{contact.text}</p>
+    </div>
+    <div class="contact-panel__actions">
+      {contact.email ? (
+        <a class="contact-email" href={`mailto:${contact.email}`}>{contact.email}</a>
+      ) : (
+        <span class="contact-email contact-email--pending">Agregar email</span>
+      )}
+      <div class="contact-links">
+        {contact.links.map((link) =>
+          link.href ? (
+            <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noreferrer' : undefined}>
+              {link.label}<span aria-hidden="true">↗</span>
+            </a>
+          ) : (
+            <span class="contact-links__pending">{link.label} / pendiente</span>
+          ),
+        )}
+      </div>
+    </div>
+  </div>
+</section>

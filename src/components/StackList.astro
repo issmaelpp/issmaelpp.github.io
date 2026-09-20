@@ -1,0 +1,33 @@
+---
+import type { StackGroup } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  stack: StackGroup[];
+}
+
+const { stack } = Astro.props;
+---
+
+<section id="stack" class="section stack-section" aria-labelledby="stack-title">
+  <SectionHeading
+    id="stack-title"
+    eyebrow="04 / STACK"
+    title="Herramientas para pensar en capas."
+    description="Un mapa vivo de lenguajes, frameworks y herramientas. La lista puede crecer con el tiempo."
+  />
+
+  <div class="stack-grid">
+    {stack.map((group, index) => (
+      <article class="stack-group" data-reveal>
+        <div class="stack-group__topline">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <span>{group.label}</span>
+        </div>
+        <ul>
+          {group.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

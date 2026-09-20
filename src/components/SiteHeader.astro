@@ -1,0 +1,52 @@
+---
+import type { LinkItem } from '../data/portfolio';
+
+interface Props {
+  name: string;
+  monogram: string;
+  links: LinkItem[];
+}
+
+const { name, monogram, links } = Astro.props;
+const navigation = [
+  { label: 'Perfil', href: '#perfil' },
+  { label: 'Experiencia', href: '#experiencia' },
+  { label: 'Proyectos', href: '#proyectos' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Contacto', href: '#contacto' },
+];
+---
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="#top" aria-label={`Volver al inicio de ${name}`}>
+      <span class="brand__mark">{monogram}</span>
+      <span class="brand__name">{name}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="site-header__status">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Construyendo</span>
+    </div>
+
+    {links.some((link) => link.href) && (
+      <div class="site-header__links" aria-label="Enlaces externos">
+        {links
+          .filter((link) => link.href)
+          .map((link) => (
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+      </div>
+    )}
+  </div>
+</header>

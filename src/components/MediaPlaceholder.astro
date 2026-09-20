@@ -1,0 +1,32 @@
+---
+interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  variant?: 'portrait' | 'project' | 'og';
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const {
+  src,
+  alt = 'Imagen del portfolio',
+  label = 'OPEN SLOT',
+  variant = 'project',
+  class: className = '',
+  loading = 'lazy',
+} = Astro.props;
+---
+
+<figure class:list={['media-slot', `media-slot--${variant}`, className]}>
+  {src ? (
+    <img src={src} alt={alt} loading={loading} decoding="async" />
+  ) : (
+    <div class="media-slot__empty" role="img" aria-label={`${label}. Imagen pendiente`}>
+      <span class="media-slot__cross media-slot__cross--top" aria-hidden="true"></span>
+      <span class="media-slot__label">{label}</span>
+      <span class="media-slot__hint">Añadir imagen cuando esté disponible</span>
+      <span class="media-slot__cross media-slot__cross--bottom" aria-hidden="true"></span>
+    </div>
+  )}
+</figure>
